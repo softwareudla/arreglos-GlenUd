@@ -7,17 +7,24 @@ int main() {
     double nots[5][3];
     int e = 1;
     double nota_minima_aprobacion = 6.0;
+    
     for (int i = 0; i < 5; i++) {
         printf("Ingrese nombre %d: ", e++);
         fgets(nombres[i], 20, stdin);
         nombres[i][strcspn(nombres[i], "\n")] = '\0'; 
     }
+
     for (int g = 0; g < 3; g++) {
         printf("-----------------------------------\n");
         printf("Asignatura: %s\n", asig[g]);
         for (int j = 0; j < 5; j++) {
-            printf("Ingrese la nota de %s: ", nombres[j]);
-            scanf("%lf", &nots[j][g]);
+            do {
+                printf("Ingrese la nota de %s (0 - 10): ", nombres[j]);
+                scanf("%lf", &nots[j][g]);
+                if (nots[j][g] < 0 || nots[j][g] > 10) {
+                    printf("Nota inválida. Ingrese un valor entre 0 y 10.\n");
+                }
+            } while (nots[j][g] < 0 || nots[j][g] > 10);  
         }
     }
     for (int i = 0; i < 3; i++) {
